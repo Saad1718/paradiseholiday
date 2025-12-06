@@ -1,0 +1,769 @@
+<!doctype html>
+<html lang="en">
+
+
+<head>
+
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Tour Packages — Ready-to-use Code</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html,
+        body {
+            width: 100%;
+            height: 100%;
+            overflow-x: hidden;
+        }
+
+        :root {
+            --accent: #0f6cff;
+            --muted: #6b7280;
+            --card: #ffffff;
+            --bg: #f3f4f6
+        }
+
+        * {
+            box-sizing: border-box
+        }
+
+        body * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Segoe UI, Arial, sans-serif;
+        }
+
+        /* HEADER */
+        .site-header {
+            width: 100%;
+            background: #0a2a2a;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        /* CONTAINER */
+        .header-container {
+            max-width: 1300px;
+            margin: auto;
+            padding: 16px 30px;
+            display: grid;
+            grid-template-columns: auto 1fr auto;
+            align-items: center;
+        }
+
+        /* LOGO */
+        .logo-box {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo-box img {
+            width: 42px;
+        }
+
+        .logo-box h3 {
+            font-size: 16px;
+            color: white;
+        }
+
+        .logo-box p {
+            font-size: 11px;
+            color: #9be5df;
+        }
+
+        /* MENU */
+        .main-nav {
+            display: flex;
+            justify-content: center;
+            gap: 28px;
+        }
+
+        .main-nav a {
+            color: white;
+            text-decoration: none;
+            font-size: 14px;
+        }
+
+        .main-nav a:hover {
+            color: #00d9c0;
+        }
+
+        /* RIGHT */
+        .header-right {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+        }
+
+        .book-btn {
+            padding: 10px 24px;
+            background: #00d9c0;
+            color: #033;
+            border-radius: 30px;
+            font-weight: 600;
+            font-size: 14px;
+            text-decoration: none;
+        }
+
+        /* HAMBURGER */
+        .hamburger {
+            display: none;
+            font-size: 26px;
+            color: white;
+            cursor: pointer;
+        }
+
+        /* MOBILE MENU */
+        .mobile-nav {
+            display: none;
+            flex-direction: column;
+            position: absolute;
+            right: 15px;
+            top: 72px;
+            width: 220px;
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 12px 30px rgba(0, 0, 0, .25);
+        }
+
+        .mobile-nav a {
+            padding: 13px 16px;
+            text-decoration: none;
+            color: black;
+            border-bottom: 1px solid #eee;
+        }
+
+        .mobile-book {
+            background: #00c9b7;
+            color: white !important;
+            font-weight: 700;
+            text-align: center;
+        }
+
+        /* RESPONSIVE */
+        @media(max-width:992px) {
+            .about-grid {
+                grid-template-columns: 1fr
+            }
+
+            .stats {
+                grid-template-columns: repeat(2, 1fr)
+            }
+
+            .why-grid {
+                grid-template-columns: repeat(2, 1fr)
+            }
+        }
+
+        @media(max-width:768px) {
+            .main-nav {
+                display: none
+            }
+
+            .hamburger {
+                display: block
+            }
+        }
+
+        @media(max-width:500px) {
+            .hero h1 {
+                font-size: 30px
+            }
+
+            .stats {
+                grid-template-columns: 1fr
+            }
+
+            .why-grid {
+                grid-template-columns: 1fr
+            }
+        }
+
+        /* Container */
+
+        .controls {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+            margin-bottom: 20px
+        }
+
+        .controls input[type="search"],
+        .controls select {
+            padding: 10px 12px;
+            border-radius: 8px;
+            border: 1px solid #d1d5db;
+            min-width: 180px
+        }
+
+        .controls button {
+            padding: 10px 14px;
+            border-radius: 8px;
+            border: 0;
+            background: var(--accent);
+            color: #fff;
+            cursor: pointer
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+            gap: 18px
+        }
+
+        .card {
+            background: var(--card);
+            border-radius: 12px;
+            padding: 14px;
+            box-shadow: 0 6px 18px rgba(15, 23, 42, 0.06);
+            display: flex;
+            flex-direction: column;
+            gap: 8px
+        }
+
+        .card .media {
+            width: 100%;
+            aspect-ratio: 16 / 9;
+            /* ✅ RATIO FIX */
+            border-radius: 10px;
+            background-size: cover;
+            /* ✅ NO STRETCH */
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+
+        .tag {
+            display: inline-block;
+            padding: 6px 8px;
+            border-radius: 999px;
+            font-size: 12px;
+            background: #eef2ff;
+            color: #0f6cff;
+            width: max-content
+        }
+
+        .title {
+            font-weight: 600;
+            margin: 0
+        }
+
+        .desc {
+            font-size: 13px;
+            color: var(--muted);
+            margin: 0
+        }
+
+        .meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 8px
+        }
+
+        .price {
+            font-weight: 700
+        }
+
+        .buttons {
+            display: flex;
+            gap: 8px
+        }
+
+        .btn {
+            padding: 8px 10px;
+            border-radius: 8px;
+            border: 1px solid #e5e7eb;
+            background: #fff;
+            cursor: pointer
+        }
+
+        .btn.primary {
+            background: var(--accent);
+            color: #fff;
+            border: 0
+        }
+
+        /* Modal */
+        .modal-backdrop {
+            position: fixed;
+            inset: 0;
+            background: rgba(2, 6, 23, 0.6);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 20px
+        }
+
+        .modal {
+            background: #fff;
+            border-radius: 12px;
+            max-width: 760px;
+            width: 100%;
+            max-height: 90vh;
+            overflow: auto;
+            padding: 18px
+        }
+
+        .modal header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center
+        }
+
+        .close {
+            background: transparent;
+            border: 0;
+            font-size: 20px;
+            cursor: pointer
+        }
+
+        /* Booking form */
+        form .row {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap
+        }
+
+        form input,
+        form select,
+        form textarea {
+            padding: 10px;
+            border-radius: 8px;
+            border: 1px solid #e6e7eb;
+            width: 100%
+        }
+
+        form .col-2 {
+            flex: 1 1 48%
+        }
+
+        /* Footer */
+        footer {
+            background: #06121a;
+            color: #b6c6cd;
+            padding: 40px 0
+        }
+
+        footer a {
+            color: #dff6ee
+        }
+
+        @media (max-width: 600px) {
+
+            .card .media {
+                aspect-ratio: 16 / 9;
+                height: auto;
+            }
+
+            .card {
+                overflow: hidden;
+            }
+
+        }
+    </style>
+</head>
+
+<body>
+    <header class="site-header">
+        <div class="header-container">
+
+            <!-- LOGO -->
+            <div class="logo-box">
+                <img src="https://mir-s3-cdn-cf.behance.net/project_modules/fs/e72707187420141.65885a49a2ef3.png">
+                <div>
+                    <h3>Paradise Holiday</h3>
+                    <p>Travel & Holidays</p>
+                </div>
+            </div>
+
+            <!-- MENU -->
+            <nav class="main-nav">
+                <a href="index.html">Home</a>
+                <a href="packages.html">Packages</a>
+                <a href="destination.html">Destinations</a>
+                <a href="about.html">About</a>
+            </nav>
+
+            <!-- RIGHT -->
+            <div class="header-right">
+                <a href="#" class="book-btn">Book Now</a>
+                <div class="hamburger" onclick="toggleMenu()">☰</div>
+            </div>
+
+        </div>
+
+        <!-- MOBILE MENU -->
+        <div class="mobile-nav" id="mobileMenu">
+            <a href="index.html">Home</a>
+            <a href="packages.html">Packages</a>
+            <a href="destination.html">Destinations</a>
+            <a href="about.html">About</a>
+            <a href="#" class="mobile-book">Book Now</a>
+        </div>
+    </header>
+
+    <div class="container">
+        <header>
+            <div>
+                <h1>Tour Packages</h1>
+                <p>Choose a ready-made package — view details or book instantly.</p>
+            </div>
+            <div>
+                <button id="addDemo" class="btn">Add demo package</button>
+            </div>
+        </header>
+
+        <div class="controls">
+            <input type="search" id="search" placeholder="Search packages, destination or tag...">
+            <select id="filter">
+                <option value="all">All durations</option>
+                <option value="2-3">2–3 Days</option>
+                <option value="4-6">4–6 Days</option>
+                <option value="7+">7+ Days</option>
+            </select>
+            <select id="sort">
+                <option value="popular">Sort: Popular</option>
+                <option value="price-low">Price: Low to High</option>
+                <option value="price-high">Price: High to Low</option>
+            </select>
+            <button id="reset" class="btn">Reset</button>
+        </div>
+
+        <main>
+            <section class="grid" id="cards"></section>
+        </main>
+
+
+    </div>
+
+    <!-- modal: details -->
+    <div id="modalBackdrop" class="modal-backdrop" role="dialog" aria-modal="true">
+        <div class="modal" id="modal">
+            <header>
+                <div>
+                    <h3 id="modalTitle">Package title</h3>
+                    <p id="modalSubtitle" style="margin:0;color:var(--muted);font-size:13px"></p>
+                </div>
+                <div>
+                    <button class="close" id="modalClose">✕</button>
+                </div>
+            </header>
+
+            <hr style="margin:12px 0">
+            <div id="modalContent"></div>
+            <div style="margin-top:12px;display:flex;gap:8px;justify-content:flex-end">
+                <button class="btn" id="modalEnquire">Enquire</button>
+                <button class="btn primary" id="modalBook">Book Now</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- modal: booking -->
+    <div id="bookingBackdrop" class="modal-backdrop">
+        <div class="modal">
+            <header>
+                <h3>Book Package</h3>
+                <button class="close" id="bookingClose">✕</button>
+            </header>
+            <hr style="margin:12px 0">
+            <form id="bookingForm">
+                <input type="hidden" id="pkgId">
+                <div class="row">
+                    <div class="col-2">
+                        <label>Name</label>
+                        <input required id="name" placeholder="Your full name">
+                    </div>
+                    <div class="col-2">
+                        <label>Phone</label>
+                        <input required id="phone" placeholder="Mobile number">
+                    </div>
+                </div>
+                <div style="margin-top:8px">
+                    <label>Email</label>
+                    <input id="email" placeholder="Email address">
+                </div>
+                <div style="margin-top:8px">
+                    <label>Travel Date</label>
+                    <input id="date" type="date">
+                </div>
+                <div style="margin-top:8px">
+                    <label>Message / Special Requests</label>
+                    <textarea id="message" rows="4" placeholder="Any special requests or details"></textarea>
+                </div>
+                <div style="margin-top:12px;display:flex;justify-content:flex-end;gap:8px">
+                    <button type="button" class="btn" id="bookingCancel">Cancel</button>
+                    <button type="submit" class="btn primary">Send Booking</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // Data: packages (you can replace images with real URLs)
+        const packages = [
+            {
+                id: 1, title: 'Kerala Backwaters Special', days: 5, price: 12999, tag: 'Nature', subtitle: 'Alleppey • Munnar • Thekkady', img: 'https://www.tourmyindia.com/blog/wp-content/uploads/2023/02/Kerala-Backwater-Tour-Guide.jpg', short: 'Houseboat stay, Munnar tea gardens, Periyar wildlife safari', details: `<h4>Itinerary (5 Days / 4 Nights)</h4>
+        <ol>
+          <li>Day 1: Arrival & houseboat check-in at Alleppey.</li>
+          <li>Day 2: Munnar — tea estates & Eravikulam NP visit.</li>
+          <li>Day 3: Thekkady — Periyar wildlife boat ride.</li>
+          <li>Day 4: Local markets & cultural show.</li>
+          <li>Day 5: Departure.</li>
+        </ol>
+        <h4>Inclusions</h4>
+        <ul><li>Hotels & houseboat stay</li><li>Meals as per plan</li><li>Transfers & sightseeing</li></ul>`
+            },
+            { id: 2, title: 'Goa Beach Holiday', days: 4, price: 9499, tag: 'Beach', subtitle: 'North & South Goa', img: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=800&q=60', short: 'Beach hotel, sightseeing, optional cruise party', details: '<p>Relax on famous beaches, enjoy water sports and nightlife.</p>' },
+            { id: 3, title: 'Himalayan Adventure Tour', days: 7, price: 15999, tag: 'Adventure', subtitle: 'Manali • Solang', img: 'https://images.unsplash.com/photo-1526772662000-3f88f10405ff?auto=format&fit=crop&w=800&q=60', short: 'Trekking, snow activities, paragliding', details: '<p>Perfect for adventure lovers — snow, valleys & thrills.</p>' },
+            { id: 4, title: 'Golden Triangle Tour', days: 4, price: 11499, tag: 'Heritage', subtitle: 'Delhi • Agra • Jaipur', img: 'https://images.unsplash.com/photo-1526772662000-3f88f10405ff?auto=format&fit=crop&w=800&q=60', short: 'Taj Mahal, forts, palaces', details: '<p>Iconic monuments, guided city tours and local experiences.</p>' },
+            { id: 5, title: 'Andaman Island Getaway', days: 6, price: 18999, tag: 'Island', subtitle: 'Port Blair • Havelock', img: 'https://www.goandamanholidays.com/assets/uploads/557aa0e42bb14df7b107c257ca97bbeb.jpg', short: 'Snorkeling, beaches, Cellular Jail visit', details: '<p>Crystal clear water, beach leisure & water sports.</p>' },
+            { id: 6, title: 'Dubai Luxury Tour', days: 5, price: 39999, tag: 'International', subtitle: 'Dubai City', img: 'https://c.regencyholidays.com/packages/1802863a-7652-4ecc-8e83-1a20bc2b557c/original/694aa1d1-037c-425b-be7e-fd82e774d6d1.webp', short: 'Burj Khalifa, desert safari, shopping', details: '<p>Luxury experiences & city highlights.</p>' },
+            { id: 7, title: 'Honeymoon Special', days: 5, price: 15999, tag: 'Romantic', subtitle: 'Custom: Manali/Goa/Andaman', img: 'https://radhagopinathtours.com/wp-content/uploads/2025/04/shimla-manali-honeymoon-tour.webp', short: 'Candlelight dinner, flower decor, surprises', details: '<p>Private moments, special setups and complimentary cake.</p>' },
+            { id: 8, title: 'Family Tour Package', days: 4, price: 12999, tag: 'Family', subtitle: 'Kid-friendly', img: 'https://www.asparkholidays.com/uploads/82964_Family-Holidays.jpg', short: 'Hotels, transportation, kid activities', details: '<p>Designed for family comfort and convenience.</p>' },
+            { id: 9, title: 'Student Adventure Plan', days: 3, price: 6999, tag: 'Budget', subtitle: 'Hill station / Camps', img: 'https://img.freepik.com/premium-photo/students-teacherled-adventure-exploring-lush-forest-school-trip-concept-outdoor-education-school-trip-forest-exploration-student-adventure-teacherled-excursion_864588-149848.jpg', short: 'Budget-friendly student groups & activities', details: '<p>Group discounts, adventure activities, safe guides.</p>' },
+            { id: 10, title: 'Corporate & Group Tours', days: 2, price: 8999, tag: 'Corporate', subtitle: 'Team building & events', img: 'https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&w=800&q=60', short: 'Conference help, transport, event planning', details: '<p>Tailored corporate solutions with meeting facilities.</p>' },
+            { id: 11, title: 'Kashmir Paradise Tour', days: 5, price: 16999, tag: 'Nature', subtitle: 'Srinagar • Gulmarg • Pahalgam', img: 'https://tse4.mm.bing.net/th/id/OIP.MeSxnuzB1fteKbYdlyYIlAHaCg?pid=Api&P=0&h=180', short: 'Houseboats, meadows & snow valleys', details: '<p>Experience heaven on earth with lakes, mountains & gardens.</p>' },
+            { id: 12, title: 'Rajasthan Royal Retreat', days: 6, price: 17999, tag: 'Heritage', subtitle: 'Jaipur • Jodhpur • Udaipur', img: 'https://www.buildingmaterialreporter.com/uploads/blogs/thumb_front/0710eb920d93832b2e2c6c5a9b3c877a.jpg', short: 'Forts, palaces & royal culture', details: '<p>Discover India’s royalty with magnificent palaces.</p>' },
+            { id: 13, title: 'Leh Ladakh Bike Trip', days: 7, price: 21999, tag: 'Adventure', subtitle: 'Leh • Nubra • Pangong', img: 'https://thedreamridersgroup.com/listing/9/Explore%20Ladakh%20on%20two%20wheels,Morey%20Plains.jpg', short: 'Highways, monasteries & lakes', details: '<p>A dream ride for adventure seekers.</p>' },
+
+            { id: 14, title: 'Ooty Hill Escape', days: 4, price: 10999, tag: 'Hill Station', subtitle: 'Ooty • Coonoor', img: 'https://assets.gqindia.com/photos/62f67dd24c3aadbd8ac31c68/16:9/w_1280,c_limit/Nilgiri-Mountain-Toy-Train.jpg', short: 'Tea gardens & toy train ride', details: '<p>Reconnect with nature in South India’s favorite hills.</p>' },
+
+            { id: 15, title: 'Darjeeling Delight', days: 4, price: 9999, tag: 'Hill Station', subtitle: 'Darjeeling • Tiger Hill', img: 'https://www.magadhtours.com/North-India-Tours/image/Darjeeling/gallery_big2.jpg', short: 'Sunrise views & tea gardens', details: '<p>Witness magical sunrise over Kanchenjunga.</p>' },
+
+            { id: 16, title: 'Singapore City Tour', days: 5, price: 34999, tag: 'International', subtitle: 'Merlion • Sentosa', img: 'https://3.bp.blogspot.com/-9_87a136HuY/W-1rUotcsNI/AAAAAAAAJdo/YW6b3yMmRqYXB1HSP82NIi2Zk3r77gkewCLcBGAs/w1200-h630-p-k-no-nu/6.jpg', short: 'Luxury city & island fun', details: '<p>Explore Asia’s most modern destination.</p>' },
+
+            { id: 17, title: 'Maldives Honeymoon Package', days: 5, price: 54999, tag: 'Luxury', subtitle: 'Water Villas • Beaches', img: 'https://www.gtholidays.in/wp-content/uploads/2022/10/Maldives-Honeymoon-Packages.jpg', short: 'Romance in paradise', details: '<p>Perfect honeymoon destination with private beaches.</p>' },
+
+            { id: 18, title: 'Thailand Fun Tour', days: 5, price: 29999, tag: 'International', subtitle: 'Bangkok • Pattaya', img: 'https://www.vegantravel.com/wp-content/uploads/2017/05/SEO_Images2.jpg', short: 'Shopping, beaches & nightlife', details: '<p>A perfect blend of fun and shopping.</p>' },
+
+            { id: 19, title: 'Nainital Lake Holiday', days: 3, price: 8999, tag: 'Nature', subtitle: 'Nainital • Snow View', img: 'https://gostops.s3.amazonaws.com/media/city/card/nainital_current.webp', short: 'Lakes & mountain breeze', details: '<p>Enjoy boating and scenic cable car rides.</p>' },
+
+            { id: 20, title: 'Varanasi Spiritual Tour', days: 3, price: 7999, tag: 'Spiritual', subtitle: 'Ganga Aarti • Temples', img: 'https://www.thetripchoice.com/wp-content/uploads/2024/07/one-day-varanasi-ganga-aarti-sarnath-tour-spiritual-odyssey-1.jpg', short: 'Holy rituals & cultural experiences', details: '<p>Discover India’s most spiritual city.</p>' },
+
+            { id: 21, title: 'Amritsar Golden Temple Trip', days: 2, price: 6999, tag: 'Religious', subtitle: 'Golden Temple • Wagah Border', img: 'https://media.tacdn.com/media/attractions-splice-spp-674x446/06/e6/44/b8.jpg', short: 'Spiritual & patriotic journey', details: '<p>Witness daily border ceremony and serenity.</p>' },
+
+            { id: 22, title: 'Shimla Snow Tour', days: 4, price: 11999, tag: 'Winter', subtitle: 'Shimla • Kufri', img: 'https://tse1.mm.bing.net/th/id/OIP.9wMe0A7aDm_tT8BI4hVvOQHaDm?pid=Api&P=0&h=180', short: 'Snow fun & hill charm', details: '<p>Enjoy snowfall & winter sports.</p>' },
+
+            { id: 23, title: 'Rishikesh Adventure Camp', days: 3, price: 8499, tag: 'Adventure', subtitle: 'Rafting • Camping', img: 'https://campinginrishikesh.in/wp-content/uploads/2020/03/camp-crossfire-river-view.jpg', short: 'River rafting & bonfire nights', details: '<p>Perfect for youth adventure trips.</p>' },
+
+            { id: 24, title: 'Pondicherry French Escape', days: 3, price: 9999, tag: 'Beach', subtitle: 'French Colony • Beaches', img: 'https://tse4.mm.bing.net/th/id/OIP._n6q5GD4ortP4WM43XUwSwHaE7?pid=Api&P=0&h=180', short: 'Peaceful coastal journey', details: '<p>Explore French culture in India.</p>' },
+
+            { id: 25, title: 'Kanyakumari Sunrise Tour', days: 3, price: 7999, tag: 'Nature', subtitle: 'Vivekananda Rock • Beach', img: 'http://templeyatri.in/wp-content/uploads/2024/01/sunrise-in-kanyakumari.jpg', short: 'Sunrise at India’s tip', details: '<p>Unforgettable views of sunrise & sunset.</p>' },
+
+            { id: 26, title: 'Mussoorie Hill Tour', days: 3, price: 8999, tag: 'Hill Station', subtitle: 'Mussoorie • Kempty Falls', img: 'https://www.himalayanmoments.com/image/display?image=aHR0cHM6Ly93d3cuaGltYWxheWFubW9tZW50cy5jb20vZ3ZhX2Fzc2V0cy9wYWNrYWdlcy8xMTA5LzE1NDc3MDkzOThfbXVzc29vcmllNi5qcGcmdz04ODAmaD00OTY=', short: 'Queen of hills', details: '<p>Refreshing and scenic getaway.</p>' },
+
+            { id: 27, title: 'Coorg Coffee Trails', days: 4, price: 11999, tag: 'Nature', subtitle: 'Coffee estates • Forests', img: 'https://www.trawell.in/blog/wp-content/uploads/2017/08/Coorg.jpg', short: 'Mist & greenery', details: '<p>Relax amid coffee gardens and waterfalls.</p>' },
+
+            { id: 28, title: 'Agra Weekend Tour', days: 2, price: 5999, tag: 'Heritage', subtitle: 'Taj Mahal', img: 'https://images.unsplash.com/photo-1548013146-72479768bada?auto=format&fit=crop&w=800&q=60', short: 'Monument of love', details: '<p>Short and sweet heritage escape.</p>' },
+
+            { id: 29, title: 'Nepal Kathmandu Tour', days: 5, price: 19999, tag: 'International', subtitle: 'Temples • Mountains', img: 'https://www.holidify.com/images/bgImages/KATHMANDU.jpg', short: 'Culture & Himalayan beauty', details: '<p>Spiritual and scenic tour.</p>' },
+
+            { id: 30, title: 'Meghalaya Nature Escape', days: 5, price: 14999, tag: 'Nature', subtitle: 'Shillong • Cherrapunji', img: 'https://www.remotelands.com/travelogues/app/uploads/2018/09/Waterfalls.jpg', short: 'Living root bridges & waterfalls', details: '<p>Explore North-East India’s hidden gem.</p>' }
+
+
+
+        ];
+
+        // DOM refs
+        const cardsEl = document.getElementById('cards');
+        const searchEl = document.getElementById('search');
+        const filterEl = document.getElementById('filter');
+        const sortEl = document.getElementById('sort');
+        const resetBtn = document.getElementById('reset');
+
+        const modalBackdrop = document.getElementById('modalBackdrop');
+        const modalTitle = document.getElementById('modalTitle');
+        const modalSubtitle = document.getElementById('modalSubtitle');
+        const modalContent = document.getElementById('modalContent');
+        const modalClose = document.getElementById('modalClose');
+        const modalBook = document.getElementById('modalBook');
+        const modalEnquire = document.getElementById('modalEnquire');
+
+        const bookingBackdrop = document.getElementById('bookingBackdrop');
+        const bookingClose = document.getElementById('bookingClose');
+        const bookingForm = document.getElementById('bookingForm');
+        const bookingCancel = document.getElementById('bookingCancel');
+        const pkgIdInput = document.getElementById('pkgId');
+
+        // Render cards
+        function render(list) {
+            cardsEl.innerHTML = '';
+            list.forEach(p => {
+                const card = document.createElement('article');
+                card.className = 'card';
+                card.innerHTML = `
+          <div class="media" style="background-image:url('${p.img}')"></div>
+          <div style="display:flex;justify-content:space-between;align-items:start;gap:8px">
+            <div style="flex:1">
+              <span class="tag">${p.tag}</span>
+              <h3 class="title">${p.title}</h3>
+              <p class="desc">${p.short}</p>
+            </div>
+          </div>
+          <div class="meta">
+            <div>
+              <div class="price">₹${p.price.toLocaleString()}</div>
+              <div style="font-size:12px;color:var(--muted)">${p.days} days • ${p.subtitle}</div>
+            </div>
+            <div class="buttons">
+              <button class="btn" data-id="${p.id}" data-action="details">View Details</button>
+              <button class="btn primary" data-id="${p.id}" data-action="book">Book Now</button>
+            </div>
+          </div>
+        `;
+                cardsEl.appendChild(card);
+            });
+        }
+
+        // Initial render
+        render(packages);
+
+        // Search & filter logic
+        function applyFilters() {
+            const q = (searchEl.value || '').toLowerCase().trim();
+            const f = filterEl.value;
+            const s = sortEl.value;
+
+            let list = packages.filter(p => {
+                const matchQ = p.title.toLowerCase().includes(q) || p.short.toLowerCase().includes(q) || p.tag.toLowerCase().includes(q) || p.subtitle.toLowerCase().includes(q);
+                let matchF = true;
+                if (f === '2-3') matchF = p.days >= 2 && p.days <= 3;
+                if (f === '4-6') matchF = p.days >= 4 && p.days <= 6;
+                if (f === '7+') matchF = p.days >= 7;
+                return matchQ && matchF;
+            });
+
+            if (s === 'price-low') list.sort((a, b) => a.price - b.price);
+            if (s === 'price-high') list.sort((a, b) => b.price - a.price);
+
+            render(list);
+        }
+
+        searchEl.addEventListener('input', applyFilters);
+        filterEl.addEventListener('change', applyFilters);
+        sortEl.addEventListener('change', applyFilters);
+        resetBtn.addEventListener('click', () => { searchEl.value = ''; filterEl.value = 'all'; sortEl.value = 'popular'; applyFilters(); });
+
+        // card clicks (delegation)
+        cardsEl.addEventListener('click', e => {
+            const btn = e.target.closest('button');
+            if (!btn) return;
+            const id = Number(btn.dataset.id);
+            const action = btn.dataset.action;
+            const pkg = packages.find(x => x.id === id);
+            if (action === 'details') openDetails(pkg);
+            if (action === 'book') openBooking(pkg);
+        });
+
+        // Details modal
+        function openDetails(pkg) {
+            modalTitle.textContent = pkg.title;
+            modalSubtitle.textContent = `${pkg.days} days • ₹${pkg.price.toLocaleString()} • ${pkg.subtitle}`;
+            modalContent.innerHTML = `
+        <div style="display:flex;gap:12px;flex-wrap:wrap">
+          <img src="${pkg.img}" alt="${pkg.title}" style="width:220px;height:auto;max-width:100%;border-radius:8px;object-fit:cover">
+
+          <div style="flex:1">
+            <p style="color:var(--muted)">${pkg.short}</p>
+            ${pkg.details}
+          </div>
+        </div>
+      `;
+            modalBackdrop.style.display = 'flex';
+
+            // set handlers
+            modalBook.onclick = () => { modalBackdrop.style.display = 'none'; openBooking(pkg); }
+            modalEnquire.onclick = () => { alert('Enquiry received for: ' + pkg.title); }
+        }
+
+        modalClose.addEventListener('click', () => modalBackdrop.style.display = 'none');
+        modalBackdrop.addEventListener('click', e => { if (e.target === modalBackdrop) modalBackdrop.style.display = 'none'; });
+
+        // Booking modal
+        function openBooking(pkg) {
+            bookingBackdrop.style.display = 'flex';
+            pkgIdInput.value = pkg.id;
+            document.getElementById('name').focus();
+        }
+        bookingClose.addEventListener('click', () => bookingBackdrop.style.display = 'none');
+        bookingCancel.addEventListener('click', () => bookingBackdrop.style.display = 'none');
+        bookingBackdrop.addEventListener('click', e => { if (e.target === bookingBackdrop) bookingBackdrop.style.display = 'none'; });
+
+        bookingForm.addEventListener('submit', e => {
+            e.preventDefault();
+            const payload = {
+                packageId: pkgIdInput.value,
+                name: document.getElementById('name').value,
+                phone: document.getElementById('phone').value,
+                email: document.getElementById('email').value,
+                date: document.getElementById('date').value,
+                message: document.getElementById('message').value
+            };
+            // Demo: print to console. Replace with real API call or mailto link.
+            console.log('BookingPayload', payload);
+            alert('Thanks! Your booking request has been sent. (Check console for payload)');
+            bookingBackdrop.style.display = 'none';
+            bookingForm.reset();
+        });
+
+        // Add demo package button
+        document.getElementById('addDemo').addEventListener('click', () => {
+            const newPkg = { id: Date.now(), title: 'New Demo Package', days: 3, price: 7999, tag: 'Demo', subtitle: 'Demo City', img: 'https://images.unsplash.com/photo-1501785888041-af3ef285b470?auto=format&fit=crop&w=800&q=60', short: 'Demo package short description', details: '<p>Demo details... replace with real content.</p>' };
+            packages.unshift(newPkg);
+            applyFilters();
+        });
+    </script>
+    <footer>
+        <div class="container"
+            style="display:flex;gap:20px;flex-wrap:wrap;align-items:flex-start;justify-content:space-between">
+            <div style="max-width:420px">
+                <h3 style="margin:0;color:#fff">Paradise — Kerala Holidays (Clone)</h3>
+                <p style="margin-top:8px;color:#cfe9db">Address line • Phone: +91 99999 99999 • Email: info@example.com
+                </p>
+            </div>
+            <div style="display:flex;gap:18px;flex-wrap:wrap">
+                <div>
+                    <strong>Packages</strong>
+                    <ul style="list-style:none;padding:0;margin:8px 0 0;color:#b6c6cd">
+                        <li><a href="#packages">Munnar & Backwaters</a></li>
+                        <li><a href="#itineraries">Wildlife & Hill Stations</a></li>
+                        <li><a href="#contact">Group Tours</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <strong>Follow</strong>
+                    <ul style="list-style:none;padding:0;margin:8px 0 0;color:#b6c6cd">
+                        <li><a href="#">Instagram</a></li>
+                        <li><a href="#">Facebook</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        </script>
+
+
+
+
+
+
+
+
+        <script>
+            function toggleMenu() {
+                let menu = document.getElementById("mobileMenu");
+                menu.style.display = (menu.style.display === "flex") ? "none" : "flex";
+            }
+        </script>
+</body>
+
+</html>

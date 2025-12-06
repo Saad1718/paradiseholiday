@@ -1,0 +1,810 @@
+<!doctype html>
+<html lang="en">
+<link rel="stylesheet" href="style.css">
+<script src="script.js"></script>
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Paradise — Holiday Packages (Clone)</title>
+    <meta name="description"
+        content="Sample single-file responsive clone template for a Kerala tours & travels website." />
+    <style>
+        /* -------------------- Simple, modern CSS (single-file) - responsive layout - grid cards for packages - hero with background image (replace with real image) - minimal, accessible markup -------------------- */
+        :root {
+            --accent: #0b8f6e;
+            --dark: #0b2431;
+            --muted: #667788
+        }
+
+        * {
+            box-sizing: border-box
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Segoe UI, Arial, sans-serif;
+        }
+
+        /* HEADER */
+        .site-header {
+            width: 100%;
+            background: #0a2a2a;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        /* CONTAINER */
+        .header-container {
+            max-width: 1300px;
+            margin: auto;
+            padding: 16px 30px;
+            display: grid;
+            grid-template-columns: auto 1fr auto;
+            align-items: center;
+        }
+
+        /* LOGO */
+        .logo-box {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo-box img {
+            width: 42px;
+        }
+
+        .logo-box h3 {
+            font-size: 16px;
+            color: white;
+        }
+
+        .logo-box p {
+            font-size: 11px;
+            color: #9be5df;
+        }
+
+        /* MENU */
+        .main-nav {
+            display: flex;
+            justify-content: center;
+            gap: 28px;
+        }
+
+        .main-nav a {
+            color: white;
+            text-decoration: none;
+            font-size: 14px;
+        }
+
+        .main-nav a:hover {
+            color: #00d9c0;
+        }
+
+        /* RIGHT */
+        .header-right {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+        }
+
+        .book-btn {
+            padding: 10px 24px;
+            background: #00d9c0;
+            color: #033;
+            border-radius: 30px;
+            font-weight: 600;
+            font-size: 14px;
+            text-decoration: none;
+        }
+
+        /* HAMBURGER */
+        .hamburger {
+            display: none;
+            font-size: 26px;
+            color: white;
+            cursor: pointer;
+        }
+
+        /* MOBILE MENU */
+        .mobile-nav {
+            display: none;
+            flex-direction: column;
+            position: absolute;
+            right: 15px;
+            top: 72px;
+            width: 220px;
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 12px 30px rgba(0, 0, 0, .25);
+        }
+
+        .mobile-nav a {
+            padding: 13px 16px;
+            text-decoration: none;
+            color: black;
+            border-bottom: 1px solid #eee;
+        }
+
+        .mobile-book {
+            background: #00c9b7;
+            color: white !important;
+            font-weight: 700;
+            text-align: center;
+        }
+
+        /* RESPONSIVE */
+        @media(max-width:992px) {
+            .about-grid {
+                grid-template-columns: 1fr
+            }
+
+            .stats {
+                grid-template-columns: repeat(2, 1fr)
+            }
+
+            .why-grid {
+                grid-template-columns: repeat(2, 1fr)
+            }
+        }
+
+        @media(max-width:768px) {
+            .main-nav {
+                display: none
+            }
+
+            .hamburger {
+                display: block
+            }
+        }
+
+        @media(max-width:500px) {
+            .hero h1 {
+                font-size: 30px
+            }
+
+            .stats {
+                grid-template-columns: 1fr
+            }
+
+            .why-grid {
+                grid-template-columns: 1fr
+            }
+        }
+
+        /* FORCE ONE HEADER LOGIC EVERYWHERE */
+        .site-header,
+        .main-header {
+            position: sticky !important;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .pro-header {
+            position: sticky !important;
+            top: 0;
+        }
+
+
+        .hero {
+            position: relative;
+            width: 100%;
+            height: 65vh;
+            /* FIXED HEIGHT */
+            max-height: 600px;
+            /* CONTROL SIZE */
+            background: url('https://images.unsplash.com/photo-1501785888041-af3ef285b470') no-repeat;
+            background-size: contain;
+            /* ✅ IMAGE NORMAL SIZE */
+            background-position: center center;
+            display: flex;
+            align-items: center;
+            padding: 70px 8%;
+            overflow: hidden;
+            background-color: #000;
+            /* empty area ka color */
+        }
+
+        @media(max-width:768px) {
+            .hero {
+                height: 55vh;
+                background-size: contain;
+            }
+        }
+
+
+
+        /* DARK LAYER */
+        .hero-overlay {
+            position: absolute;
+            inset: 0;
+            background: rgba(0, 0, 0, .35);
+        }
+
+        /* CONTENT */
+        .hero-content {
+            position: relative;
+            max-width: 600px;
+            background: rgba(255, 255, 255, .08);
+            backdrop-filter: blur(14px);
+            padding: 35px 40px;
+            border-radius: 18px;
+            color: white;
+        }
+
+        /* BADGE */
+        .badge {
+            display: inline-block;
+            background: rgba(255, 255, 255, .25);
+            padding: 6px 14px;
+            border-radius: 12px;
+            font-size: 12px;
+            margin-bottom: 14px;
+        }
+
+        /* TITLE */
+        .hero-content h1 {
+            font-size: 40px;
+            line-height: 1.25;
+            margin-bottom: 14px;
+        }
+
+        .hero-content p {
+            font-size: 15px;
+            opacity: .95;
+            margin-bottom: 25px;
+        }
+
+        /* SEARCH PANEL */
+        .search-box {
+            background: white;
+            display: flex;
+            gap: 12px;
+            padding: 10px;
+            border-radius: 14px;
+        }
+
+        .search-box input,
+        .search-box select {
+            flex: 1;
+            border: none;
+            outline: none;
+            padding: 10px 12px;
+            font-size: 14px;
+        }
+
+        .search-box button {
+            background: #00d9c0;
+            border: none;
+            color: #033;
+            padding: 10px 18px;
+            border-radius: 12px;
+            font-weight: 700;
+            cursor: pointer;
+        }
+
+        /* ✅ MOBILE */
+        @media (max-width:768px) {
+            .hero {
+                padding: 40px 20px;
+                min-height: 75vh;
+            }
+
+            .hero-content {
+                max-width: 100%;
+                padding: 22px;
+            }
+
+            .hero-content h1 {
+                font-size: 26px;
+            }
+
+            .search-box {
+                flex-direction: column;
+            }
+        }
+
+        /* Packages */
+        section {
+            padding: 56px 0
+        }
+
+        h2.section-title {
+            font-size: 22px;
+            margin: 0 0 14px
+        }
+
+        .packages-section {
+            margin-top: 40px;
+        }
+
+        .grid-packages {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 18px
+        }
+
+        .card {
+            background: #fff;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 6px 18px rgba(9, 30, 45, 0.06);
+            border: 1px solid #eef2f6
+        }
+
+        .card .thumb {
+            height: 160px;
+            background: #e9f6f0;
+            display: block
+        }
+
+        .card .body {
+            padding: 14px
+        }
+
+        .tag {
+            display: inline-block;
+            padding: 6px 8px;
+            border-radius: 8px;
+            background: #effcf6;
+            color: #046c52;
+            font-weight: 700;
+            font-size: 13px
+        }
+
+        .card h3 {
+            margin: 8px 0 6px;
+            font-size: 16px
+        }
+
+        .meta {
+            color: var(--muted);
+            font-size: 14px
+        }
+
+        .price {
+            font-weight: 800;
+            font-size: 18px
+        }
+
+        .actions {
+            display: flex;
+            gap: 8px;
+            margin-top: 10px
+        }
+
+        /* Features */
+        .features {
+            display: flex;
+            gap: 18px;
+            flex-wrap: wrap
+        }
+
+        .feature {
+            background: #fff;
+            padding: 18px;
+            border-radius: 12px;
+            flex: 1;
+            min-width: 200px;
+            box-shadow: 0 6px 18px rgba(9, 30, 45, 0.04)
+        }
+
+        /* Footer */
+        footer {
+            background: #06121a;
+            color: #b6c6cd;
+            padding: 40px 0
+        }
+
+        footer a {
+            color: #dff6ee
+        }
+
+        /* =============================
+   RESPONSIVE FIX PATCH (SAFE)
+============================= */
+
+        /* Fix hero image stretching */
+        .hero {
+            background-size: cover !important;
+            background-position: center center !important;
+        }
+
+        /* Prevent image stretching in cards */
+        .card img {
+            width: 100%;
+            height: auto;
+            display: block;
+            object-fit: cover;
+        }
+
+        /* Fix grid on smaller devices */
+        @media(max-width:1024px) {
+            .grid-packages {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .about-box {
+                grid-template-columns: 1fr;
+                gap: 22px;
+            }
+        }
+
+        /* Tablets */
+        @media(max-width:768px) {
+            .hero {
+                min-height: 75vh;
+            }
+
+            .header-container {
+                grid-template-columns: auto 1fr auto;
+            }
+
+            .grid-packages {
+                grid-template-columns: 1fr;
+            }
+
+            .about-text h2 {
+                font-size: 22px;
+            }
+
+            .why-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Small Phones */
+        @media(max-width:480px) {
+            .hero {
+                padding: 32px 16px;
+            }
+
+            .hero-content h1 {
+                font-size: 22px;
+            }
+
+            .hero-content p {
+                font-size: 14px;
+            }
+
+            .search-box {
+                flex-direction: column;
+            }
+
+            .badge {
+                font-size: 11px;
+            }
+
+            .book-btn {
+                padding: 8px 16px;
+                font-size: 13px;
+            }
+        }
+
+        /* Ultra small screens */
+        @media(max-width:360px) {
+            .hero-content {
+                padding: 18px;
+            }
+
+            .hero-content h1 {
+                font-size: 20px;
+            }
+        }
+
+        /* ✅ REMOVE IMAGE STRETCHING */
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        /* ✅ FIX CARD IMAGES */
+        .package-card img,
+        .card img {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+            border-radius: 12px 12px 0 0;
+        }
+
+        /* ✅ FIX HERO / FULL WIDTH SECTIONS */
+        .hero,
+        .banner,
+        .section {
+            width: 100%;
+            max-width: 100%;
+            overflow: hidden;
+        }
+
+        /* ✅ REMOVE 100vw ISSUES */
+        body {
+            overflow-x: hidden;
+        }
+
+        /* ✅ GRID RESPONSIVENESS */
+        .packages-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 22px;
+        }
+
+        /* ✅ TIGHT CONTAINER */
+        .container {
+            max-width: 1200px;
+            margin: auto;
+            padding: 0 16px;
+        }
+    </style>
+</head>
+
+<body>
+    <header class="site-header">
+        <div class="header-container"> <!-- LOGO -->
+            <div class="logo-box"> <img
+                    src="https://mir-s3-cdn-cf.behance.net/project_modules/fs/e72707187420141.65885a49a2ef3.png">
+                <div>
+                    <h3>Paradise Holiday</h3>
+                    <p>Travel & Holidays</p>
+                </div>
+            </div> <!-- MENU -->
+            <nav class="main-nav"> <a href="index.html">Home</a> <a href="packages.html">Packages</a> <a
+                    href="destination.html">Destinations</a> <a href="about.html">About</a> </nav> <!-- RIGHT -->
+            <div class="header-right"> <a href="contact.html" class="book-btn">Book Now</a>
+                <div class="hamburger" onclick="toggleMenu()">☰</div>
+            </div>
+        </div> <!-- MOBILE MENU -->
+        <div class="mobile-nav" id="mobileMenu"> <a href="index.html">Home</a> <a href="packages.html">Packages</a> <a
+                href="destination.html">Destinations</a> <a href="about.html">About</a> <a href="#"
+                class="mobile-book">Book Now</a> </div>
+    </header>
+    <main>
+        <section class="hero">
+            <div class="hero-overlay"></div>
+            <div class="hero-content"> <span class="badge">Best Seller</span>
+                <h1> Kerala Holiday Packages — <br> Backwaters, Hills & Beaches </h1>
+                <p> Curated trips across Munnar, Alleppey houseboats, Thekkady wildlife and cosy coastal stays. Choose
+                    2–10 day packages with hotels, transfers and optional add-ons. </p>
+                <div class="search-box"> <input type="text" placeholder="Search by destination, e.g. Munnar"> <select>
+                        <option>2 Days</option>
+                        <option>3 Days</option>
+                        <option selected>5 Days</option>
+                        <option>7 Days</option>
+                        <option>10 Days</option>
+                    </select> <button>Find Packages</button> </div>
+            </div>
+        </section>
+        <section class="container" id="packages">
+            <h2 class="section-title">Popular Kerala Packages</h2>
+            <div class="grid-packages" aria-live="polite">
+                </article> <!-- PACKAGE 1 -->
+                <article class="card"> <img
+                        src="https://pix8.agoda.net/hotelImages/49727898/0/e918269b65f3e1f5d3c1a9a96019d1d6.jpg?ce=0&s=1024x"
+                        alt="Varkala Beach">
+                    <div class="card-body">
+                        <h3>Munnar — Alleppey Backwaters</h3>
+                        <p>3 Days • 4 Nights — Hills + Houseboat stay + Sightseeing</p>
+                        <div class="row between"> <strong>₹11,500</strong> <button class="btn small outline book-btn"
+                                data-package="Varkala Beach Holiday" data-price="11500">Book</button> </div>
+                    </div>
+                </article> <!-- PACKAGE 2 -->
+                <article class="card"> <img
+                        src="https://images.unsplash.com/photo-1526772662000-3f88f10405ff?auto=format&fit=crop&w=1200&q=60"
+                        alt="Thekkady">
+                    <div class="card-body">
+                        <h3>Munnar — Thekkady — Kumarakom</h3>
+                        <p>3 Days • 2 Nights — Wildlife, Periyar lake</p>
+                        <div class="row between"> <strong>₹14,000</strong> <button class="btn small outline book-btn"
+                                data-package="Thekkady Jungle Safari" data-price="14000">Book</button> </div>
+                    </div>
+                </article> <!-- PACKAGE 3 -->
+                <article class="card"> <img
+                        src="https://www.dtpcthiruvananthapuram.com/uploads/picture_gallery/gallery_images/kovalam-1920x1080-20230510231440820551.webp"
+                        alt="Kovalam">
+                    <div class="card-body">
+                        <h3>Kovalam Beach Package</h3>
+                        <p>4 Days • 3 Nights — Relaxing beach stay with Ayurvedic spa option</p>
+                        <div class="row between"> <strong>₹16,000</strong> <button class="btn small outline book-btn"
+                                data-package="Kovalam Beach Package" data-price="16000">Book</button> </div>
+                    </div>
+                </article> <!-- PACKAGE 4 -->
+                <article class="card"> <img
+                        src="https://tse3.mm.bing.net/th/id/OIP.hmLbVz1BJzYFVN3j8BB5cgHaEK?pid=Api&P=0&h=180"
+                        alt="Varkala Beach">
+                    <div class="card-body">
+                        <h3>Varkala Beach Holiday</h3>
+                        <p>3 Days • 2 Nights — Cliffs, beaches & cafes</p>
+                        <div class="row between"> <strong>₹11,500</strong> <button class="btn small outline book-btn"
+                                data-package="Varkala Beach Holiday" data-price="11500">Book</button> </div>
+                    </div>
+                </article> <!-- PACKAGE 5 -->
+                <article class="card"> <img
+                        src="https://tse2.mm.bing.net/th/id/OIP.TCsAx0UXnZR7Zm2KZfOvEQHaD2?pid=Api&P=0&h=180"
+                        alt="Thekkady">
+                    <div class="card-body">
+                        <h3>Thekkady Jungle Safari</h3>
+                        <p>3 Days • 2 Nights — Wildlife, Periyar lake</p>
+                        <div class="row between"> <strong>₹14,000</strong> <button class="btn small outline book-btn"
+                                data-package="Thekkady Jungle Safari" data-price="14000">Book</button> </div>
+                    </div>
+                </article> <!-- PACKAGE 6 -->
+                <article class="card"> <img
+                        src="https://tse3.mm.bing.net/th/id/OIP.aACDednP7GfW5VrtIKuz4gHaF9?pid=Api&P=0&h=180"
+                        alt="Kovalam">
+                    <div class="card-body">
+                        <h3>Kovalam Beach Package</h3>
+                        <p>4 Days • 3 Nights — Ayurveda & sunset views</p>
+                        <div class="row between"> <strong>₹16,000</strong> <button class="btn small outline book-btn"
+                                data-package="Kovalam Beach Package" data-price="16000">Book</button> </div>
+                    </div>
+                </article> <!-- PACKAGE 7 -->
+                <article class="card"> <img
+                        src="https://tse3.mm.bing.net/th/id/OIP.TUq9t-NTAjzfr1fgEMQrrQHaE7?pid=Api&P=0&h=180"
+                        alt="Silent Valley">
+                    <div class="card-body">
+                        <h3>Silent Valley Trek</h3>
+                        <p>2 Days • 1 Night — Rainforest experience</p>
+                        <div class="row between"> <strong>₹9,500</strong> <button class="btn small outline book-btn"
+                                data-package="Silent Valley Trek" data-price="9500">Book</button> </div>
+                    </div>
+                </article> <!-- PACKAGE 8 -->
+                <article class="card"> <img
+                        src="https://tse1.mm.bing.net/th/id/OIP.CV5uhK-kn7HqaBScGW-iPAHaDm?pid=Api&P=0&h=180"
+                        alt="Poovar Island">
+                    <div class="card-body">
+                        <h3>Poovar Island Retreat</h3>
+                        <p>3 Days • 2 Nights — Backwaters meets sea</p>
+                        <div class="row between"> <strong>₹13,500</strong> <button class="btn small outline book-btn"
+                                data-package="Poovar Island Retreat" data-price="13500">Book</button> </div>
+                    </div>
+                </article> <!-- PACKAGE 9 -->
+                <article class="card"> <img
+                        src="https://tse1.mm.bing.net/th/id/OIP.g4b598f_8gGx1f2DikVDmQHaE7?pid=Api&P=0&h=180"
+                        alt="Athirappilly Falls">
+                    <div class="card-body">
+                        <h3>Athirappilly Waterfalls Tour</h3>
+                        <p>2 Days • 1 Night — Kerala’s Niagara</p>
+                        <div class="row between"> <strong>₹8,000</strong> <button class="btn small outline book-btn"
+                                data-package="Athirappilly Waterfalls Tour" data-price="8000">Book</button> </div>
+                    </div>
+                </article> <!-- PACKAGE 10 -->
+                <article class="card"> <img
+                        src="https://tse2.mm.bing.net/th/id/OIP.xbdKRaB6QH3UC-YOAU5t6gHaC4?pid=Api&P=0&h=180"
+                        alt="Kumarakom">
+                    <div class="card-body">
+                        <h3>Kumarakom Backwater Bliss</h3>
+                        <p>3 Days • 2 Nights — Bird sanctuary & canals</p>
+                        <div class="row between"> <strong>₹15,000</strong> <button class="btn small outline book-btn"
+                                data-package="Kumarakom Backwater Bliss" data-price="15000">Book</button> </div>
+                    </div>
+                </article>
+            </div>
+        </section>
+        <section class="section" id="about-us">
+            <div class="about-box">
+                <div class="about-text">
+                    <h2>About Paradise Holiday Tours</h2>
+                    <p> Kerala Holiday Tours is a trusted travel company dedicated to creating memorable experiences
+                        across God’s Own Country. We specialize in customized tour packages, luxury stays, honeymoon
+                        trips, and family holidays. </p>
+                    <p> Our goal is simple: deliver comfort, safety, and happiness with every journey. From misty hill
+                        stations to peaceful backwaters, we organize travel experiences that stay with you forever. </p>
+                    <ul class="about-list">
+                        <li>✅ Professional & certified tour planners</li>
+                        <li>✅ Personalized holiday packages</li>
+                        <li>✅ Reliable local support team</li>
+                        <li>✅ Affordable travel solutions</li>
+                        <li>✅ Verified hotels & transport partners</li>
+                    </ul> <button class="btn">Explore Packages</button>
+                </div>
+                <div class="about-image"> <img
+                        src="https://images.unsplash.com/photo-1531973576160-7125cd663d86?q=80&w=900&auto=format&fit=crop"
+                        alt="Kerala landscape"> </div>
+            </div>
+        </section>
+        <section class="why-us">
+            <h2>Why Book With Paradise Holiday?</h2>
+            <p class="subtitle">Trusted by thousands of travelers across Kerala</p>
+            <div class="why-grid">
+                <div class="why-card"> <i>🏨</i>
+                    <h3>Handpicked Hotels</h3>
+                    <p>Verified stays from comfort to luxury hotels.</p>
+                </div>
+                <div class="why-card"> <i>🧭</i>
+                    <h3>Local Experts</h3>
+                    <p>Guided by Kerala specialists and professionals.</p>
+                </div>
+                <div class="why-card"> <i>🚗</i>
+                    <h3>Private Transport</h3>
+                    <p>Clean AC vehicles with trained drivers.</p>
+                </div>
+                <div class="why-card"> <i>⏰</i>
+                    <h3>24/7 Support</h3>
+                    <p>We’re always just a call away.</p>
+                </div>
+                <div class="why-card"> <i>⚡</i>
+                    <h3>Instant Booking</h3>
+                    <p>Fast and easy trip confirmation.</p>
+                </div>
+                <div class="why-card"> <i>💰</i>
+                    <h3>No Hidden Costs</h3>
+                    <p>Transparent pricing always.</p>
+                </div>
+            </div>
+        </section>
+        <section class="container" id="about" style="padding-bottom:40px">
+            <h2 class="section-title">About the company</h2>
+            <p style="color:var(--muted)">This is a sample single-file front-end template inspired by the Paradise
+                Kerala website. Replace images and copy with your official content. The template focuses on
+                accessibility, simple responsive layout and clear CTAs.</p>
+        </section>
+        <section class="contact-section" id="contact">
+            <div class="container contact-grid"> <!-- LEFT INFO -->
+                <div class="contact-info">
+                    <h2>Get in Touch</h2>
+                    <p>Plan your dream Kerala holiday with us. Our team is ready to help you with packages, hotels, and
+                        travel planning.</p>
+                    <div class="info-box"> <strong>📞 Phone</strong>
+                        <p>+91 99999 99999</p>
+                    </div>
+                    <div class="info-box"> <strong>📧 Email</strong>
+                        <p>info@example.com</p>
+                    </div>
+                    <div class="info-box"> <strong>📍 Location</strong>
+                        <p>Kerala, India</p>
+                    </div>
+                </div> <!-- RIGHT FORM -->
+                <form class="contact-form">
+                    <div class="input-group"> <input type="text" placeholder="Your Name" required> <input type="tel"
+                            placeholder="Phone / WhatsApp" required> </div> <input type="email"
+                        placeholder="Email Address (Optional)"> <select>
+                        <option>Select Package</option>
+                        <option>Munnar & Backwaters</option>
+                        <option>Kovalam Beach</option>
+                        <option>Wildlife & Hill Station</option>
+                        <option>Custom Package</option>
+                    </select> <textarea placeholder="Your Message or Travel Plan"></textarea> <button class="btn">Send
+                        Enquiry</button>
+                </form>
+            </div>
+        </section>
+    </main>
+    <footer>
+        <div class="container"
+            style="display:flex;gap:20px;flex-wrap:wrap;align-items:flex-start;justify-content:space-between">
+            <div style="max-width:420px">
+                <h3 style="margin:0;color:#fff">Paradise — Kerala Holidays (Clone)</h3>
+                <p style="margin-top:8px;color:#cfe9db">Address line • Phone: +91 99999 99999 • Email: info@example.com
+                </p>
+            </div>
+            <div style="display:flex;gap:18px;flex-wrap:wrap">
+                <div> <strong>Packages</strong>
+                    <ul style="list-style:none;padding:0;margin:8px 0 0;color:#b6c6cd">
+                        <li><a href="#packages">Munnar & Backwaters</a></li>
+                        <li><a href="#itineraries">Wildlife & Hill Stations</a></li>
+                        <li><a href="#contact">Group Tours</a></li>
+                    </ul>
+                </div>
+                <div> <strong>Follow</strong>
+                    <ul style="list-style:none;padding:0;margin:8px 0 0;color:#b6c6cd">
+                        <li><a href="#">Instagram</a></li>
+                        <li><a href="#">Facebook</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <script> function menuToggle() { var menu = document.getElementById("mobileMenu"); menu.style.display = (menu.style.display === "flex") ? "none" : "flex"; } /* MOBILE RESPONSIVENESS */ function checkWidth() { if (window.innerWidth <= 768) { document.getElementById("desktopMenu").style.display = "none"; document.getElementById("burger").style.display = "block"; document.getElementById("subText").style.display = "none"; } else { document.getElementById("desktopMenu").style.display = "block"; document.getElementById("burger").style.display = "none"; document.getElementById("mobileMenu").style.display = "none"; document.getElementById("subText").style.display = "block"; } } window.onload = checkWidth; window.onresize = checkWidth; </script>
+    <script> function toggleMenu() { let menu = document.getElementById("mobileMenu"); menu.style.display = (menu.style.display === "flex") ? "none" : "flex"; } </script>
+</body>
+
+</html>

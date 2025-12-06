@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+
+<head>
+
+    <meta charset="UTF-8">
+    <title>Destinations | Paradise Holiday</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Segoe UI, Arial, sans-serif;
+        }
+
+        body {
+            background: #f9fdfd;
+            color: #073b3b;
+        }
+
+        /* HEADER */
+        .site-header {
+            width: 100%;
+            background: #0a2a2a;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+
+        /* CONTAINER */
+        .header-container {
+            max-width: 1300px;
+            margin: auto;
+            padding: 16px 30px;
+            display: grid;
+            grid-template-columns: auto 1fr auto;
+            align-items: center;
+        }
+
+        /* LOGO */
+        .logo-box {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo-box img {
+            width: 42px;
+        }
+
+        .logo-box h3 {
+            font-size: 16px;
+            color: white;
+        }
+
+        .logo-box p {
+            font-size: 11px;
+            color: #9be5df;
+        }
+
+        /* MENU */
+        .main-nav {
+            display: flex;
+            justify-content: center;
+            gap: 28px;
+        }
+
+        .main-nav a {
+            color: white;
+            text-decoration: none;
+            font-size: 14px;
+        }
+
+        .main-nav a:hover {
+            color: #00d9c0;
+        }
+
+        /* RIGHT */
+        .header-right {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+        }
+
+        .book-btn {
+            padding: 10px 24px;
+            background: #00d9c0;
+            color: #033;
+            border-radius: 30px;
+            font-weight: 600;
+            font-size: 14px;
+            text-decoration: none;
+        }
+
+        /* HAMBURGER */
+        .hamburger {
+            display: none;
+            font-size: 26px;
+            color: white;
+            cursor: pointer;
+        }
+
+        .mobile-nav {
+            display: none;
+            position: absolute;
+            right: 15px;
+            top: 72px;
+            width: 240px;
+            flex-direction: column;
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 12px 30px rgba(0, 0, 0, .25);
+        }
+
+        .mobile-nav a {
+            padding: 14px 16px;
+            color: black;
+            border-bottom: 1px solid #eee;
+            text-decoration: none;
+        }
+
+        .mobile-book {
+            background: #00c9b7;
+            color: white !important;
+            text-align: center;
+            font-weight: 700;
+        }
+
+        /* DESTINATIONS GRID */
+        .destinations {
+            max-width: 1200px;
+            margin: auto;
+            padding: 40px 15px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 22px;
+        }
+
+        /* CARD */
+        .card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, .1);
+            transition: 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-6px);
+        }
+
+        /* IMAGE FIX */
+        .card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            object-position: center;
+            display: block;
+        }
+
+        /* CONTENT */
+        .content {
+            padding: 16px;
+        }
+
+        .content h2 {
+            font-size: 22px;
+            margin-bottom: 6px;
+        }
+
+        .tag {
+            display: inline-block;
+            background: #007bff;
+            color: #fff;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+        }
+
+        .price {
+            color: #007bff;
+            font-weight: bold;
+            margin-top: 6px;
+        }
+
+        /* BUTTONS */
+        .btns {
+            display: flex;
+            gap: 10px;
+            margin-top: 12px;
+        }
+
+        button {
+            flex: 1;
+            padding: 10px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+
+        .details {
+            background: #eee;
+        }
+
+        .book {
+            background: #007bff;
+            color: white;
+        }
+
+        /* FOOTER */
+        footer {
+            background: #06121a;
+            color: #b6c6cd;
+            padding: 40px 0;
+        }
+
+        footer a {
+            color: #dff6ee;
+        }
+
+        /* RESPONSIVE FIXES */
+        @media(max-width:768px) {
+
+            .main-nav {
+                display: none;
+            }
+
+            .hamburger {
+                display: block;
+            }
+
+            .header-container {
+                padding: 14px 15px;
+            }
+
+            .content h2 {
+                font-size: 20px;
+            }
+        }
+
+        /* SMALL MOBILE FIX */
+        @media(max-width:480px) {
+
+            .destinations {
+                gap: 18px;
+            }
+
+            .card img {
+                height: 170px;
+            }
+
+            .btns {
+                flex-direction: column;
+            }
+
+            button {
+                width: 100%;
+            }
+        }
+
+        /* FINAL MOBILE FIX */
+        @media(max-width:768px) {
+
+            .destinations {
+                padding: 20px 10px;
+                grid-template-columns: 1fr;
+                /* single card per row */
+            }
+
+            .card {
+                width: 100%;
+                margin: auto;
+            }
+
+            .card img {
+                height: 180px;
+            }
+
+            .btns {
+                flex-direction: column;
+            }
+
+            button {
+                width: 100%;
+                font-size: 15px;
+            }
+        }
+
+        /* EXTRA SMALL DEVICE FIX */
+        @media(max-width:480px) {
+
+            .destinations {
+                padding: 15px 8px;
+            }
+
+            .content {
+                padding: 14px;
+            }
+
+            .content h2 {
+                font-size: 19px;
+            }
+
+            .tag {
+                font-size: 11px;
+            }
+
+            .price {
+                font-size: 14px;
+            }
+
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+
+        <div class="header-container">
+
+            <div class="logo-box">
+                <img src="https://mir-s3-cdn-cf.behance.net/project_modules/fs/e72707187420141.65885a49a2ef3.png">
+                <div>
+                    <h3>Paradise Holiday</h3>
+                    <p>Travel & Holidays</p>
+                </div>
+            </div>
+
+            <nav class="main-nav">
+                <a href="index.html">Home</a>
+                <a href="packages.html">Packages</a>
+                <a href="destination.html">Destinations</a>
+                <a href="about.html">About</a>
+            </nav>
+
+            <div class="header-right">
+                <a href="#" class="book-btn">Book Now</a>
+                <div class="hamburger" onclick="toggleMenu()">☰</div>
+            </div>
+
+        </div>
+
+        <div class="mobile-nav" id="mobileMenu">
+            <a href="index.html">Home</a>
+            <a href="packages.html">Packages</a>
+            <a href="destination.html">Destinations</a>
+            <a href="about.html">About</a>
+            <a href="#" class="mobile-book">Book Now</a>
+        </div>
+    </header>
+
+    <section class="destinations">
+        <!-- YOUR SAME CARDS AS BEFORE -->
+        <section class="destinations">
+            <div class="card"> <img
+                    src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=800&q=60">
+                <div class="content">
+                    <h2>Goa</h2> <span class="tag">Beach</span>
+                    <p>Enjoy beaches, nightlife & Portuguese culture.</p>
+                    <div class="info">Best Time: Nov – Feb</div>
+                    <div class="price">From ₹9,999</div>
+                    <div class="btns"> <button class="details">Details</button> <button class="book">Book Now</button>
+                    </div>
+                </div>
+            </div>
+            <div class="card"> <img
+                    src="https://images-acme.mmtcdn.com/prod-acme-image/system/product_media/c/164153/media2A3EIZ7H5SRP3.jpg">
+                <div class="content">
+                    <h2>Manali</h2> <span class="tag">Hill Station</span>
+                    <p>Snow-capped mountains & adventure sports.</p>
+                    <div class="info">Best Time: Dec – Feb</div>
+                    <div class="price">From ₹10,999</div>
+                    <div class="btns"> <button class="details">Details</button> <button class="book">Book Now</button>
+                    </div>
+                </div>
+            </div>
+            <div class="card"> <img
+                    src="https://www.tripsavvy.com/thmb/3O9PYRVr3gsAXYxmWugCz291_no=/2124x1411/filters:no_upscale():max_bytes(150000):strip_icc()/GettyImages-538201886-62671fc4cba54e7cb92d65d12d09f8be.jpg">
+                <div class="content">
+                    <h2>Jaipur</h2> <span class="tag">Heritage</span>
+                    <p>Royal forts and vibrant culture.</p>
+                    <div class="info">Best Time: Oct – Mar</div>
+                    <div class="price">From ₹8,999</div>
+                    <div class="btns"> <button class="details">Details</button> <button class="book">Book Now</button>
+                    </div>
+                </div>
+            </div>
+            <div class="card"> <img
+                    src="https://images.travelandleisureasia.com/wp-content/uploads/sites/2/2024/01/11201317/Kashmir-Deepanshu-Nayak-1600x900.jpg">
+                <div class="content">
+                    <h2>Kashmir</h2> <span class="tag">Nature</span>
+                    <p>Lakes, mountains & scenic beauty.</p>
+                    <div class="info">Best Time: Mar – Oct</div>
+                    <div class="price">From ₹16,999</div>
+                    <div class="btns"> <button class="details">Details</button> <button class="book">Book Now</button>
+                    </div>
+                </div>
+            </div>
+            <div class="card"> <img
+                    src="https://www.indiantempletour.com/wp-content/uploads/2022/08/Andaman-and-Nicobar-Islands-Package-1.jpg">
+                <div class="content">
+                    <h2>Andaman</h2> <span class="tag">Island</span>
+                    <p>Crystal clear waters & peaceful beaches.</p>
+                    <div class="info">Best Time: Nov – Mar</div>
+                    <div class="price">From ₹18,999</div>
+                    <div class="btns"> <button class="details">Details</button> <button class="book">Book Now</button>
+                    </div>
+                </div>
+            </div>
+            <div class="card"> <img
+                    src="http://4.bp.blogspot.com/-caE9Px7s1IY/VoE9zTmQsyI/AAAAAAABNPI/ylTbqB21XDk/s1600/Dubai%2Bluxury%2Bdestination-passion4luxury-19.jpg">
+                <div class="content">
+                    <h2>Dubai</h2> <span class="tag">International</span>
+                    <p>Luxury lifestyle & desert safari.</p>
+                    <div class="info">Best Time: Nov – Feb</div>
+                    <div class="price">From ₹39,999</div>
+                    <div class="btns"> <button class="details">Details</button> <button class="book">Book Now</button>
+                    </div>
+                </div>
+            </div>
+            <div class="card"> <img src="https://namaraj-paudel.github.io/DiscoverNepal/images/town%20and%20cities.jpg">
+                <div class="content">
+                    <h2>Nepal</h2> <span class="tag">Mountains</span>
+                    <p>Culture, temples & Himalayas.</p>
+                    <div class="info">Best Time: Sep – Apr</div>
+                    <div class="price">From ₹19,999</div>
+                    <div class="btns"> <button class="details">Details</button> <button class="book">Book Now</button>
+                    </div>
+                </div>
+            </div>
+            <div class="card"> <img
+                    src="https://as2.ftcdn.net/v2/jpg/02/09/82/45/1000_F_209824591_K05Tob490TmBlTekkPlNrxh1Hy7IKMTU.jpg">
+                <div class="content">
+                    <h2>Singapore</h2> <span class="tag">International</span>
+                    <p>Modern city & island fun.</p>
+                    <div class="info">Best Time: Year-round</div>
+                    <div class="price">From ₹34,999</div>
+                    <div class="btns"> <button class="details">Details</button> <button class="book">Book Now</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </section>
+
+    <footer>
+        <div
+            style="max-width:1200px;margin:auto;display:flex;justify-content:space-between;flex-wrap:wrap;padding:0 20px">
+            <div>
+                <h3>Paradise — Kerala Holidays</h3>
+                <p>Phone: +91 99999 99999 • info@example.com</p>
+            </div>
+            <div>
+                <strong>Follow</strong><br>
+                Instagram • Facebook
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function toggleMenu() {
+            let menu = document.getElementById("mobileMenu");
+            menu.style.display = menu.style.display === "flex" ? "none" : "flex";
+        }
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>About Us | Paradise Holiday Tours</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', sans-serif;
+        }
+
+        /* HEADER */
+        .site-header {
+            width: 100%;
+            background: #0a2a2a;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        /* HEADER CONTAINER */
+        .header-container {
+            max-width: 1300px;
+            margin: auto;
+            padding: 16px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        /* LOGO */
+        .logo-box {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo-box img {
+            width: 42px;
+        }
+
+        .logo-box h3 {
+            font-size: 16px;
+            color: #fff;
+        }
+
+        .logo-box p {
+            font-size: 11px;
+            color: #9be5df;
+        }
+
+        /* MENU */
+        .main-nav {
+            display: flex;
+            gap: 28px;
+        }
+
+        .main-nav a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 14px;
+        }
+
+        .main-nav a:hover {
+            color: #00d9c0;
+        }
+
+        /* RIGHT */
+        .header-right {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+        }
+
+        .book-btn {
+            padding: 10px 22px;
+            background: #00d9c0;
+            color: #033;
+            border-radius: 25px;
+            font-weight: 600;
+            text-decoration: none;
+        }
+
+        .hamburger {
+            display: none;
+            font-size: 28px;
+            color: #fff;
+            cursor: pointer;
+        }
+
+        /* MOBILE MENU */
+        .mobile-nav {
+            display: none;
+            flex-direction: column;
+            position: absolute;
+            right: 15px;
+            top: 75px;
+            width: 220px;
+            background: #fff;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, .3);
+        }
+
+        .mobile-nav a {
+            padding: 12px 15px;
+            text-decoration: none;
+            color: #000;
+            border-bottom: 1px solid #eee;
+        }
+
+        .mobile-book {
+            background: #00c9b7;
+            color: white !important;
+            text-align: center;
+            font-weight: 600;
+        }
+
+
+        /* HERO */
+        .hero {
+            background: linear-gradient(rgba(0, 0, 0, .6), rgba(0, 0, 0, .6)), url("https://images.unsplash.com/photo-1500530855697-b586d89ba3ee") center/cover;
+            color: #fff;
+            padding: 80px 20px;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 40px
+        }
+
+        /* CONTAINER */
+        .container {
+            max-width: 1200px;
+            margin: auto;
+            padding: 60px 20px;
+        }
+
+        /* ABOUT */
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-items: center;
+        }
+
+        .about-grid img {
+            width: 100%;
+            border-radius: 15px;
+            box-shadow: 0 5px 12px rgba(0, 0, 0, .2);
+        }
+
+        .about-text h2 {
+            color: #00796b
+        }
+
+        .list {
+            list-style: none
+        }
+
+        .list li {
+            margin: 10px 0
+        }
+
+        .list li::before {
+            content: "✔ ";
+            color: green;
+            font-weight: bold;
+        }
+
+        /* STATS */
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            margin-top: 60px;
+        }
+
+        .stats div {
+            background: #e6f7f5;
+            text-align: center;
+            padding: 25px;
+            border-radius: 12px;
+        }
+
+        .stats h3 {
+            color: #00796b
+        }
+
+        /* WHY US */
+        .why {
+            margin-top: 70px;
+        }
+
+        .why-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 18px;
+        }
+
+        .why-box {
+            background: #fff;
+            padding: 18px;
+            border-radius: 15px;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, .1);
+            text-align: center;
+        }
+
+        /* CTA */
+        .cta {
+            background: linear-gradient(#00796b, #004d40);
+            color: #fff;
+            text-align: center;
+            padding: 50px 20px;
+        }
+
+        .cta button {
+            margin-top: 15px;
+            background: #00d2b8;
+            padding: 12px 22px;
+            border: none;
+            border-radius: 20px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        /* FOOTER */
+        footer {
+            background: #06121a;
+            color: #b6c6cd;
+            padding: 40px 0;
+        }
+
+        footer a {
+            color: #dff6ee
+        }
+
+        /* RESPONSIVE */
+        @media(max-width:992px) {
+            .about-grid {
+                grid-template-columns: 1fr
+            }
+
+            .stats {
+                grid-template-columns: repeat(2, 1fr)
+            }
+
+            .why-grid {
+                grid-template-columns: repeat(2, 1fr)
+            }
+        }
+
+        @media(max-width:768px) {
+            .main-nav {
+                display: none
+            }
+
+            .hamburger {
+                display: block
+            }
+        }
+
+        @media(max-width:500px) {
+            .hero h1 {
+                font-size: 30px
+            }
+
+            .stats {
+                grid-template-columns: 1fr
+            }
+
+            .why-grid {
+                grid-template-columns: 1fr
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header class="site-header">
+        <div class="header-container">
+
+            <div class="logo-box">
+                <img src="https://mir-s3-cdn-cf.behance.net/project_modules/fs/e72707187420141.65885a49a2ef3.png">
+                <div>
+                    <h3>Paradise Holiday</h3>
+                    <p>Travel & Holidays</p>
+                </div>
+            </div>
+
+            <nav class="main-nav">
+                <a href="index.html">Home</a>
+                <a href="packages.html">Packages</a>
+                <a href="destination.html">Destinations</a>
+                <a href="about.html">About</a>
+            </nav>
+
+            <div class="header-right">
+                <a href="#" class="book-btn">Book Now</a>
+                <div class="hamburger" onclick="toggleMenu()">☰</div>
+            </div>
+
+        </div>
+
+        <div class="mobile-nav" id="mobileMenu">
+            <a href="index.html">Home</a>
+            <a href="packages.html">Packages</a>
+            <a href="destination.html">Destinations</a>
+            <a href="about.html">About</a>
+            <a href="#" class="mobile-book">Book Now</a>
+        </div>
+    </header>
+
+    <section class="hero">
+        <h1>About Paradise Holiday Tours</h1>
+        <p>Your trusted travel partner for unforgettable journeys</p>
+    </section>
+
+    <div class="container">
+        <div class="about-grid">
+            <div class="about-text">
+                <h2>Who We Are</h2>
+                <p>Paradise Holiday Tours is a professional travel company dedicated to creating meaningful and joyful
+                    travel experiences across India and international destinations.</p>
+                <p>From Kerala’s backwaters to Maldives beaches, we design tours that suit families, honeymooners,
+                    students and corporate travellers.</p>
+                <ul class="list">
+                    <li>Certified Tour Experts</li>
+                    <li>Customized Travel Planning</li>
+                    <li>Trusted Hotel & Transport Partners</li>
+                    <li>24x7 Support Assistance</li>
+                    <li>Best Price Guarantee</li>
+                    <li>Hassle-Free Booking</li>
+                </ul>
+            </div> <img src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d" alt="Office Team">
+        </div>
+        <div class="stats">
+            <div>
+                <h3>12+</h3>
+                <p>Years Experience</p>
+            </div>
+            <div>
+                <h3>20K+</h3>
+                <p>Happy Travelers</p>
+            </div>
+            <div>
+                <h3>150+</h3>
+                <p>Destinations</p>
+            </div>
+            <div>
+                <h3>99%</h3>
+                <p>Customer Satisfaction</p>
+            </div>
+        </div>
+        <section class="why">
+            <h2>Why Choose Paradise Holidays?</h2>
+            <div class="why-grid">
+                <div class="why-box">✔ Local travel experts</div>
+                <div class="why-box">✔ Budget friendly packages</div>
+                <div class="why-box">✔ Safety & comfort focused</div>
+                <div class="why-box">✔ Verified hotel network</div>
+                <div class="why-box">✔ Transparent pricing</div>
+                <div class="why-box">✔ Flexible itineraries</div>
+                <div class="why-box">✔ Group tour specialists</div>
+                <div class="why-box">✔ Destination experts</div>
+            </div>
+        </section>
+    </div>
+    <section class="cta">
+        <h2>Start Your Journey With Us Today!</h2>
+        <p>Contact Paradise Holiday Tours and explore the world your way.</p> <button>Explore Packages</button>
+    </section>
+    <footer>
+        <div class="container"
+            style="display:flex;gap:20px;flex-wrap:wrap;align-items:flex-start;justify-content:space-between">
+            <div style="max-width:420px">
+                <h3 style="margin:0;color:#fff">Paradise — Kerala Holidays (Clone)</h3>
+                <p style="margin-top:8px;color:#cfe9db">Address line • Phone: +91 99999 99999 • Email: info@example.com
+                </p>
+            </div>
+            <div style="display:flex;gap:18px;flex-wrap:wrap">
+                <div> <strong>Packages</strong>
+                    <ul style="list-style:none;padding:0;margin:8px 0 0;color:#b6c6cd">
+                        <li><a href="#packages">Munnar & Backwaters</a></li>
+                        <li><a href="#itineraries">Wildlife & Hill Stations</a></li>
+                        <li><a href="#contact">Group Tours</a></li>
+                    </ul>
+                </div>
+                <div> <strong>Follow</strong>
+                    <ul style="list-style:none;padding:0;margin:8px 0 0;color:#b6c6cd">
+                        <li><a href="#">Instagram</a></li>
+                        <li><a href="#">Facebook</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
+    </script>
+
+
+    <script>
+        function toggleMenu() {
+            let menu = document.getElementById("mobileMenu");
+            menu.style.display = (menu.style.display === "flex") ? "none" : "flex";
+        }
+    </script>
+
+</body>
+
+</html>
